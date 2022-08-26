@@ -510,6 +510,66 @@ const ancients = {
   }
   update();
 }
+
+deck.addEventListener('click', getCard);
+
+function getCard() {
+  if (config.greenArr0.length !== 0 || config.brownArr0.length !== 0 || config.blueArr0.length !== 0) {
+    while (true) {
+      let num = Math.round(Math.random()*100);
+      if ( num < 33 && config.greenArr0.length !== 0) {
+        config.currentCard = config.greenArr0.pop();
+        break;
+      } 
+      else if (num >= 33 && num < 66 && config.brownArr0.length !== 0) {
+        config.currentCard = config.brownArr0.pop();
+        break;
+      }
+      else if (num >= 66 && num < 99 && config.blueArr0.length !== 0) {
+        config.currentCard = config.blueArr0.pop();
+        break;
+      }
+    }
+    config.currentStage = 0;
+  }
+  else if (config.greenArr1.length !== 0 || config.brownArr1.length !== 0 || config.blueArr1.length !== 0) {
+    while (true) {
+      let num = Math.round(Math.random()*100);
+      if ( num < 33 && config.greenArr1.length !== 0) {
+        config.currentCard = config.greenArr1.pop();
+        break;
+      } 
+      else if (num >= 33 && num < 66 && config.brownArr1.length !== 0) {
+        config.currentCard = config.brownArr1.pop();
+        break;
+      }
+      else if (num >= 66 && num < 99 && config.blueArr1.length !== 0) {
+        config.currentCard = config.blueArr1.pop();
+        break;
+      }
+    }
+    config.currentStage = 1;
+  }
+  else if (config.greenArr2.length !== 0 || config.brownArr2.length !== 0 || config.blueArr2.length !== 0) {
+    while (true) {
+      let num = Math.round(Math.random()*100);
+      if ( num < 33 && config.greenArr2.length !== 0) {
+        config.currentCard = config.greenArr2.pop();
+        break;
+      } 
+      else if (num >= 33 && num < 66 && config.brownArr2.length !== 0) {
+        config.currentCard = config.brownArr2.pop();
+        break;
+      }
+      else if (num >= 66 && num < 99 && config.blueArr2.length !== 0) {
+        config.currentCard = config.blueArr2.pop();
+        break;
+      }
+    }
+    config.currentStage = 2;
+  }
+  update();
+}
   // function difficultyReveal() {
   //   for (const difficulty of difficulties) {
   //     difficulty.classList.add('active');
