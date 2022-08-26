@@ -1,14 +1,14 @@
-import azathoth from './assets/Ancients/Azathoth.png';
-import cthulhu from './assets/Ancients/Cthulthu.png';
-import iogSothoth from './assets/Ancients/IogSothoth.png';
-import shubNiggurath from './assets/Ancients/ShubNiggurath.png';
+// import azathoth from './assets/Ancients/Azathoth.png';
+// import cthulhu from './assets/Ancients/Cthulthu.png';
+// import iogSothoth from './assets/Ancients/IogSothoth.png';
+// import shubNiggurath from './assets/Ancients/ShubNiggurath.png';
 
-const ancients = {
-  azathoth,
-  cthulhu,
-  iogSothoth,
-  shubNiggurath
-}
+// const ancients = {
+//   azathoth,
+//   cthulhu,
+//   iogSothoth,
+//   shubNiggurath
+// }
 
 // const ancientsData = [
 //     {
@@ -92,7 +92,7 @@ const ancients = {
 //       },
 //     },
 //   ]
-  const ancient = [
+const ancient = [
     {
       greenStage: [1, 2, 2],
       brownStage: [2, 3, 4],
@@ -113,9 +113,9 @@ const ancients = {
       brownStage: [2, 2, 4],
       blueStage: [1, 1, 0]
     }
-  ]
+]
 
-  const difficulties = [
+const difficulties = [
     {
       id: 'easy',
       name: 'Низкая'
@@ -128,7 +128,7 @@ const ancients = {
       id: 'hard',
       name: 'Высокая'
     },
-  ]
+]
   
   const cards = [
   {color: 'blue', difficulty: 'hard', num: 0, src: './assets/MythicCards/blue/blue1.jpg'},
@@ -209,6 +209,7 @@ const ancients = {
     currentCard: undefined
   }
 
+  let showShuffle = false;
   const ancientsArr = ['azathoth', 'cthulhu', 'iogSothoth', 'shubNiggurath'];
   const difficultiesArr = ['difficulty-easy', 'difficulty-normal', 'difficulty-hard']
 
@@ -232,7 +233,7 @@ const ancients = {
   difficulty[2] = document.querySelector('.difficulty-hard');
 
   const currentState = document.querySelector('.current-state');
-  const stageText = document.querySelector('.stage-text');
+  const stageText = document.querySelectorAll('.stage-text');
   const green1 = document.querySelector('.green1');
   const brown1 = document.querySelector('.brown1');
   const blue1 = document.querySelector('.blue1');
@@ -570,141 +571,145 @@ function getCard() {
   }
   update();
 }
-  // function difficultyReveal() {
-  //   for (const difficulty of difficulties) {
-  //     difficulty.classList.add('active');
-  //   }
-  // }
 
-  // function shuffleReveal() {
-  //   shuffle.classList.add('active');
-  // }
+function update() {
+  for (let i = 0; i < ancientCard.length; i++) {
+    if(ancientCard[i].classList.contains(config.ancientCard)) {
+      if (!ancientCard[i].classList.contains('ancient-active')) {
+        ancientCard[i].classList.add('ancient-active');
+      }
+      if (!difficultyContainer.classList.contains('difficulty-visivle'))
+        difficultyContainer.classList.add('difficulty-visible');
+      } else {
+        if (ancientCard[i].classList.contains('ancient-active')) {
+          ancientCard[i].classList.remove('ancient-active');
+        }
+      }
+    }
 
-  // // azathoth.addEventListener('click', difficultyReveal);
-  // cthulhu.addEventListener('click', difficultyReveal);
-  // iogSothoth.addEventListener('click', difficultyReveal);
-  // shubNiggurath.addEventListener('click', difficultyReveal);
+    showShuffle = false;
+    for (let i = 0; i < difficulty.length; i++) {
+      if(difficulty[i].classList.contains(config.difficulty)) {
+        if (!difficulty[i].classList.contains('difficulty-active')) {
+          difficulty[i].classList.add('difficulty-active');
+        }
+        showShuffle = true;
+      } else {
+        if (difficulty[i].classList.contains('difficulty-active')) {
+          difficulty[i].classList.remove('difficulty-active');
+        }
+      }
+    }
 
-  // function pickAncient() {
-  //   if (azathoth.addEventListener('click', difficultyReveal)) {
-  //     difficulty.onclick() = shuffleReveal();
-  //     shuffle.addEventListener('click', () => {
-  //       shuffle.classList.remove('active');
-  //       const html = 
-  //       `<div class="stage-container">
-  //       <span class="stage-text">Первая стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">1</div>
-  //           <div class="dot brown">2</div>
-  //           <div class="dot blue">1</div>
-  //       </div>
-  //       </div>
-  //       <div class="stage-container">
-  //           <span class="stage-text">Вторая стадия</span>
-  //           <div class="dots-container">
-  //               <div class="dot green">2</div>
-  //               <div class="dot brown">3</div>
-  //               <div class="dot blue">1</div>
-  //           </div>
-  //       </div>
-  //       <div class="stage-container">
-  //           <span class="stage-text">Третья стадия</span>
-  //           <div class="dots-container">
-  //               <div class="dot green">2</div>
-  //               <div class="dot brown">4</div>
-  //               <div class="dot blue">0</div>
-  //           </div>
-  //       </div>`;
-  //       currentState.innerHTML += html;
-  //     })
-  //   }
-  // }
+    if (!config.isShuffled && showShuffle) {
+      if (!shuffle.classList.contains('shuffle-visible')) {
+        shuffle.classList.add('shuffle-visible');
+      }
+    }
+    else {
+      if (shuffle.classList.contains('shuffle-visible')) {
+        shuffle.classList.remove('shuffle-visible');
+      }
+    }
+    if ( config.isShuffled) {
+      green1.textContent = config.greenArr0.length;
+      brown1.textContent = config.brownArr0.length;
+      blue1.textContent = config.blueArr0.length;
+      green2.textContent = config.greenArr1.length;
+      brown2.textContent = config.brownArr1.length;
+      blue2.textContent = config.blueArr1.length;
+      green3.textContent = config.greenArr2.length;
+      brown3.textContent = config.brownArr2.length;
+      blue3.textContent = config.blueArr2.length;
 
-  // pickAncient();
+      let allCards = config.greenArr0.length
+        + config.brownArr0.length
+        + config.blueArr0.length
+        + config.greenArr1.length
+        + config.brownArr1.length
+        + config.blueArr1.length
+        + config.greenArr2.length
+        + config.brownArr2.length
+        + config.blueArr2.length;
 
-  // cthulhu.addEventListener('click', () => {
-  //   const html = 
-  //   `<div class="stage-container">
-  //   <span class="stage-text">Первая стадия</span>
-  //   <div class="dots-container">
-  //       <div class="dot green">0</div>
-  //       <div class="dot brown">2</div>
-  //       <div class="dot blue">2</div>
-  //   </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Вторая стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">1</div>
-  //           <div class="dot brown">3</div>
-  //           <div class="dot blue">0</div>
-  //       </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Третья стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">3</div>
-  //           <div class="dot brown">4</div>
-  //           <div class="dot blue">0</div>
-  //       </div>
-  //   </div>`;
-  //   currentState.innerHTML += html;
-  // })
+      if (!currentState.classList.contains('current-state-visible'))
+        currentState.classList.add('current-state-visible');
+      if (!deck.classList.contains('deck-visible') && allCards !== 0)
+        deck.classList.add('deck-visible');
+      if (deck.classList.contains('deck-visible') && allCards == 0)
+        deck.classList.remove('deck-visible');
+      if ((!lastCard.classList.contains('last-card-visible')) && config.currentCard !== undefined)
+        lastCard.classList.add('last-card-visible');
+      if (config.currentCard !== undefined) {
+        lastCard.style.backgroundImage = `url('${cards[config.currentCard].src}')`;
+      }
+    }
+    else {
+      if(currentState.classList.contains('current-state-visible'))
+        currentState.classList.remove('current-state-visible');
+      if(deck.classList.contains('deck-visible'))
+        deck.classList.remove('deck-visible');
+      if (lastCard.classList.contains('last-card-visible'))
+        lastCard.classList.remove('last-card-visible');
+    }
 
-  // shubNiggurath.addEventListener('click', () => {
-  //   const html = 
-  //   `<div class="stage-container">
-  //   <span class="stage-text">Первая стадия</span>
-  //   <div class="dots-container">
-  //       <div class="dot green">0</div>
-  //       <div class="dot brown">2</div>
-  //       <div class="dot blue">1</div>
-  //   </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Вторая стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">2</div>
-  //           <div class="dot brown">3</div>
-  //           <div class="dot blue">1</div>
-  //       </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Третья стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">3</div>
-  //           <div class="dot brown">4</div>
-  //           <div class="dot blue">0</div>
-  //       </div>
-  //   </div>`;
-  //   currentState.innerHTML += html;
-  // })
+    if (config.currentStage === 0) {
+      if (!stageText[0].classList.contains('stage-text-active')) {
+        stageText[0].classList.add('stage-text-active');
+      }
+      if (stageText[1].classList.contains('stage-text-active')) {
+        stageText[1].classList.remove('stage-text-active');
+      }
+      if (stageText[2].classList.contains('stage-text-active')) {
+        stageText[2].classList.remove('stage-text-active');
+      }
+    }
+    else if (config.currentStage === 1) {
+      if (stageText[0].classList.contains('stage-text-active')) {
+        stageText[0].classList.remove('stage-text-active');
+      }
+      if (!stageText[1].classList.contains('stage-text-active')) {
+        stageText[1].classList.add('stage-text-active');
+      }
+      if (stageText[2].classList.contains('stage-text-active')) {
+        stageText[2].classList.remove('stage-text-active');
+      }
+    }
+    else if (config.currentStage === 2) {
+      if (stageText[0].classList.contains('stage-text-active')) {
+        stageText[0].classList.remove('stage-text-active');
+      }
+      if (stageText[1].classList.contains('stage-text-active')) {
+        stageText[1].classList.remove('stage-text-active');
+      }
+      if (!stageText[2].classList.contains('stage-text-active')) {
+        stageText[2].classList.add('stage-text-active');
+      }
+    } else {
+      if (stageText[0].classList.contains('stage-text-active')) {
+        stageText[0].classList.remove('stage-text-active');
+      }
+      if (stageText[1].classList.contains('stage-text-active')) {
+        stageText[1].classList.remove('stage-text-active');
+      }
+      if (stageText[2].classList.contains('stage-text-active')) {
+        stageText[2].classList.remove('stage-text-active');
+      }
+    }
+}
 
-  // iogSothoth.addEventListener('click', () => {
-  //   const html = 
-  //   `<div class="stage-container">
-  //   <span class="stage-text">Первая стадия</span>
-  //   <div class="dots-container">
-  //       <div class="dot green">1</div>
-  //       <div class="dot brown">2</div>
-  //       <div class="dot blue">1</div>
-  //   </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Вторая стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">3</div>
-  //           <div class="dot brown">2</div>
-  //           <div class="dot blue">1</div>
-  //       </div>
-  //   </div>
-  //   <div class="stage-container">
-  //       <span class="stage-text">Третья стадия</span>
-  //       <div class="dots-container">
-  //           <div class="dot green">2</div>
-  //           <div class="dot brown">4</div>
-  //           <div class="dot blue">0</div>
-  //       </div>
-  //   </div>`;
-  //   currentState.innerHTML += html;
-  // })
+function mixArr(array) {
+  let newArr = [];
+  let usedIndex = [];
+  for (let i = 0; i < array.length; i++){
+    while (true) {
+      let num = Math.round(Math.random()*100);
+      if (num < array.length && !usedIndex.includes(num)) {
+        newArr[i] = array[num];
+        usedIndex.push(num);
+        break;
+      }
+    }
+  }
+  return newArr;
+}
