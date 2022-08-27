@@ -1,97 +1,3 @@
-// import azathoth from './assets/Ancients/Azathoth.png';
-// import cthulhu from './assets/Ancients/Cthulthu.png';
-// import iogSothoth from './assets/Ancients/IogSothoth.png';
-// import shubNiggurath from './assets/Ancients/ShubNiggurath.png';
-
-// const ancients = {
-//   azathoth,
-//   cthulhu,
-//   iogSothoth,
-//   shubNiggurath
-// }
-
-// const ancientsData = [
-//     {
-//       id: 'azathoth',
-//       name: 'azathoth',
-//       cardFace: ancients.azathoth,
-//       firstStage: {
-//         greenCards: 1,
-//         blueCards: 1,
-//         brownCards: 2,
-//       },
-//       secondStage: {
-//         greenCards: 2,
-//         blueCards: 1,
-//         brownCards: 3,
-//       },
-//       thirdStage: {
-//         greenCards: 2,
-//         blueCards: 0,
-//         brownCards: 4,
-//       },
-//     },
-//     {
-//       id: 'cthulhu',
-//       name: 'cthulhu',
-//       cardFace: ancients.cthulhu,
-//       firstStage: {
-//         greenCards: 0,
-//         blueCards: 2,
-//         brownCards: 2,
-//       },
-//       secondStage: {
-//         greenCards: 1,
-//         blueCards: 0,
-//         brownCards: 3,
-//       },
-//       thirdStage: {
-//         greenCards: 3,
-//         blueCards: 0,
-//         brownCards: 4,
-//       },
-//     },
-//     {
-//       id: 'iogSothoth',
-//       name: 'iogSothoth',
-//       cardFace: ancients.iogSothoth,
-//       firstStage: {
-//         greenCards: 0,
-//         blueCards: 1,
-//         brownCards: 2,
-//       },
-//       secondStage: {
-//         greenCards: 2,
-//         blueCards: 1,
-//         brownCards: 3,
-//       },
-//       thirdStage: {
-//         greenCards: 3,
-//         blueCards: 0,
-//         brownCards: 4,
-//       },
-//     },
-//     {
-//       id: 'shubNiggurath',
-//       name: 'shubNiggurath',
-//       cardFace: ancients.shubNiggurath,
-//       firstStage: {
-//         greenCards: 1,
-//         blueCards: 1,
-//         brownCards: 2,
-//       },
-//       secondStage: {
-//         greenCards: 3,
-//         blueCards: 1,
-//         brownCards: 2,
-//       },
-//       thirdStage: {
-//         greenCards: 2,
-//         blueCards: 0,
-//         brownCards: 4,
-//       },
-//     },
-//   ]
 const ancient = [
     {
       greenStage: [1, 2, 2],
@@ -115,20 +21,6 @@ const ancient = [
     }
 ]
 
-const difficulties = [
-    {
-      id: 'easy',
-      name: 'Низкая'
-    },
-    {
-      id: 'normal',
-      name: 'Средняя'
-    },
-    {
-      id: 'hard',
-      name: 'Высокая'
-    },
-]
   
   const cards = [
   {color: 'blue', difficulty: 'hard', num: 0, src: './assets/MythicCards/blue/blue1.jpg'},
@@ -261,21 +153,21 @@ const difficulties = [
   for (let i = 0; i < cards.length; i++) {
     if(cards[i].color === 'green' && cards[i].difficulty === 'easy')
     greenEasy++;
-    if(cards[i].color === 'green' && cards[i].difficulties === 'normal')
+    if(cards[i].color === 'green' && cards[i].difficulty === 'normal')
     greenNormal++;
-    if(cards[i].color === 'green' && cards[i].difficulties === 'hard')
+    if(cards[i].color === 'green' && cards[i].difficulty === 'hard')
     greenHard++;
     if(cards[i].color === 'blue' && cards[i].difficulty === 'easy')
     blueEasy++;
-    if(cards[i].color === 'blue' && cards[i].difficulties === 'normal')
+    if(cards[i].color === 'blue' && cards[i].difficulty === 'normal')
     blueNormal++;
-    if(cards[i].color === 'blue' && cards[i].difficulties === 'hard')
+    if(cards[i].color === 'blue' && cards[i].difficulty === 'hard')
     blueHard++;
     if(cards[i].color === 'brown' && cards[i].difficulty === 'easy')
     brownEasy++;
-    if(cards[i].color === 'brown' && cards[i].difficulties === 'normal')
+    if(cards[i].color === 'brown' && cards[i].difficulty === 'normal')
     brownNormal++;
-    if(cards[i].color === 'brown' && cards[i].difficulties === 'hard')
+    if(cards[i].color === 'brown' && cards[i].difficulty === 'hard')
     brownHard++;
   }
 
@@ -288,7 +180,7 @@ const difficulties = [
       config.isShuffled = false;
     }
     config.difficulty = '';
-    config.ancientCard = e.target.classList[1];
+    config.ancient = e.target.classList[1];
     update();
   }
 
@@ -309,7 +201,7 @@ const difficulties = [
   function shuffleCards() {
     config.isShuffled = true;
     for (let i = 0; i < ancientsArr.length; i++){
-      if (config.ancientCard == ancientsArr[i]) {
+      if (config.ancient == ancientsArr[i]) {
         greenArr.length = ancient[i].greenStage[0] + ancient[i].greenStage[1] + ancient[i].greenStage[2];
         brownArr.length = ancient[i].brownStage[0] + ancient[i].brownStage[1] + ancient[i].brownStage[2];
         blueArr.length = ancient[i].blueStage[0] + ancient[i].blueStage[1] + ancient[i].blueStage[2];
@@ -333,7 +225,7 @@ const difficulties = [
           }
           if (conditions.low[3]){
             for (let j = 0; j < cards.length; j++){
-              if (cards[j].color === 'green' && cards[j].difficulty === conditions.low[3])
+            if (cards[j].color === 'green' && cards[j].difficulty === conditions.low[3])
             cardsPull.green.push(j);
             if (cards[j].color === 'blue' && cards[j].difficulty === conditions.low[3])
             cardsPull.blue.push(j);
@@ -354,7 +246,7 @@ const difficulties = [
         }
         if (conditions.normal[3]) {
           for (let j = 0; j < cards.length; j++){
-            if (cards[j].color === 'green' && cards[j].difficulty === conditions.normal[3])
+          if (cards[j].color === 'green' && cards[j].difficulty === conditions.normal[3])
           cardsPull.green.push(j);
           if (cards[j].color === 'blue' && cards[j].difficulty === conditions.normal[3])
           cardsPull.blue.push(j);
@@ -375,7 +267,7 @@ const difficulties = [
         }
         if (conditions.high[3]) {
           for (let j = 0; j < cards.length; j++){
-            if (cards[j].color === 'green' && cards[j].difficulty === conditions.high[3])
+          if (cards[j].color === 'green' && cards[j].difficulty === conditions.high[3])
           cardsPull.green.push(j);
           if (cards[j].color === 'blue' && cards[j].difficulty === conditions.high[3])
           cardsPull.blue.push(j);
@@ -574,7 +466,7 @@ function getCard() {
 
 function update() {
   for (let i = 0; i < ancientCard.length; i++) {
-    if(ancientCard[i].classList.contains(config.ancientCard)) {
+    if(ancientCard[i].classList.contains(config.ancient)) {
       if (!ancientCard[i].classList.contains('ancient-active')) {
         ancientCard[i].classList.add('ancient-active');
       }

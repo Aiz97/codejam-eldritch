@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
 html {
 	margin: 0;
 	padding: 0;
@@ -20,26 +22,32 @@ body {
 }
 
 .title {
+    font-family: 'Aboreto', cursive;
     text-align: center;
+    margin: 0;
 }
 
 .container {
     max-width: 1440px;
     width: 100%;
+    height: 100vh;
     margin: 0 auto;
     padding: 0 34px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ancients-container {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    min-width: 40%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 50vh;
     gap: 20px;
-    height: 600px;
     justify-content: center;
+    align-items: center;  
 }
 .ancient {
     height: 260px;
@@ -72,17 +80,13 @@ body {
 }
 
 .ancient-active {
-    border: 1px solid red;
+    border: 2px solid purple;
     transition:  0.5s;
-}
-
-.border {
-    border: 1px solid red;
 }
 
 .difficulty-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -103,7 +107,7 @@ body {
 }
 
 .difficulty-active {
-    border-color: red;
+    text-shadow: 1px 2px purple;
 }
 
 .difficulty:hover {
@@ -111,15 +115,13 @@ body {
     transition: .3s;
 }
 
-
 .shuffle {
+    position: absolute;
+    bottom: 20%;
     opacity: 0;
     font-weight: 600;
     cursor: pointer;
     visibility: hidden;
-    opacity: 0;
-    position: relative;
-    top: 40%;
 }
 
 .shuffle-visible {
@@ -131,15 +133,6 @@ body {
 .shuffle:hover {
     color: purple;
     transition: .3s;
-}
-
-.deck-container {
-    min-width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
 }
 
 .current-state {
@@ -169,7 +162,7 @@ body {
 }
 
 .stage-text-active {
-    color: purple;
+    text-shadow: 1px 2px purple;
 }
 
 .dots-container {
@@ -188,27 +181,44 @@ body {
     border: 1px solid white;
 }
 
-.green {
+.green1,
+.green2,
+.green3{
     background-color: #3b5c2a;
 }
 
-.brown {
+.brown1,
+.brown2,
+.brown3 {
     background-color: #b1830f;
 }
 
-.blue {
+.blue1,
+.blue2,
+.blue3 {
     background-color: #485d9e;
 }
 
+.deck-container {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .deck {
-    height: 190px;
-    width: 130px;
+    height: 220px;
+    width: 160px;
     background-image: url(./mythicCardBackground.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
+    border-radius: 5px;
 }
 
 .deck-visible {
@@ -219,10 +229,11 @@ body {
 
 .last-card {
     background-size: cover;
-    height: 190px;
-    width: 130px;
+    height: 220px;
+    width: 160px;
     opacity: 0;
     visibility: hidden;
+    border-radius: 5px;
 }
 
 .last-card-visible {
