@@ -150,6 +150,7 @@ const ancient = [
   let blueNormal = 0;
   let blueHard = 0;
 
+  //adding cards to array
   for (let i = 0; i < cards.length; i++) {
     if(cards[i].color === 'green' && cards[i].difficulty === 'easy')
     greenEasy++;
@@ -171,10 +172,12 @@ const ancient = [
     brownHard++;
   }
 
+  //picking ancient
   for (let i = 0; i < ancientCard.length; i++) {
     ancientCard[i].addEventListener('click', setAncient);
   }
 
+  //setting ancient
   function setAncient(e) {
     if(config.isShuffled) {
       config.isShuffled = false;
@@ -183,11 +186,11 @@ const ancient = [
     config.ancient = e.target.classList[1];
     update();
   }
-
+  //picking difficulty level
   for (let i = 0; i < difficulty.length; i++) {
     difficulty[i].addEventListener('click', setDifficulty);
   }
-
+  //setting difficulty
   function setDifficulty(e) {
     if(config.isShuffled) {
       config.isShuffled = false;
@@ -197,7 +200,7 @@ const ancient = [
   }
 
   shuffle.addEventListener('click', shuffleCards);
-
+  //shuffle cards
   function shuffleCards() {
     config.isShuffled = true;
     for (let i = 0; i < ancientsArr.length; i++){
@@ -213,7 +216,7 @@ const ancient = [
         let searchGreenStage = 0;
         let searchBlueStage = 0;
         let searchBrownStage = 0;
-
+        //difficulty easy
         if (config.difficulty == difficultiesArr[0]) {
           for(let j = 0; j < cards.length; j++){
             if (cards[j].color === 'green' && (cards[j].difficulty === conditions.low[0] || cards[j].difficulty === conditions.low[1] || cards[j].difficulty === conditions.low[2]))
@@ -234,7 +237,7 @@ const ancient = [
             }
           }
         }
-
+       //difficulty normal
        if (config.difficulty == difficultiesArr[1]) {
         for (let j = 0; j < cards.length; j++){
           if (cards[j].color === 'green' && (cards[j].difficulty === conditions.normal[0] || cards[j].difficulty === conditions.normal[1] || cards[j].difficulty === conditions.normal[2]))
@@ -255,7 +258,7 @@ const ancient = [
           }
         }
        }
-
+       //difficulty hard
        if (config.difficulty == difficultiesArr[2]) {
         for (let j = 0; j < cards.length; j++){
           if (cards[j].color === 'green' && (cards[j].difficulty === conditions.high[0] || cards[j].difficulty === conditions.high[1] || cards[j].difficulty === conditions.high[2]))
@@ -405,7 +408,7 @@ const ancient = [
 }
 
 deck.addEventListener('click', getCard);
-
+//getting card from the deck
 function getCard() {
   if (config.greenArr0.length !== 0 || config.brownArr0.length !== 0 || config.blueArr0.length !== 0) {
     while (true) {
@@ -463,7 +466,7 @@ function getCard() {
   }
   update();
 }
-
+//updating deck and stage
 function update() {
   for (let i = 0; i < ancientCard.length; i++) {
     if(ancientCard[i].classList.contains(config.ancient)) {
@@ -589,7 +592,7 @@ function update() {
       }
     }
 }
-
+//mixing arrays
 function mixArr(array) {
   let newArr = [];
   let usedIndex = [];
