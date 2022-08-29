@@ -55,6 +55,10 @@ body {
     cursor: pointer; 
     border-radius: 5px;
 }
+.ancient:hover {
+    transform: scale(110%);
+    transition: .3s all;
+}
 .azathoth {
     background-image: url(./assets/Ancients/Azathoth.jpg);
     background-repeat: no-repeat;
@@ -111,8 +115,9 @@ body {
 }
 
 .difficulty:hover {
+    transform: scale(110%);
     color: purple;
-    transition: .3s;
+    transition: .3s all;
 }
 
 .shuffle {
@@ -131,8 +136,9 @@ body {
 }
 
 .shuffle:hover {
+    transform: scale(110%);
+    transition: .3s all;
     color: purple;
-    transition: .3s;
 }
 
 .current-state {
@@ -221,6 +227,11 @@ body {
     border-radius: 5px;
 }
 
+.deck:hover {
+    transform: scale(110%);
+    transition: .3s all;
+}
+
 .deck-visible {
     visibility: visible;
     opacity: 0.7;
@@ -234,6 +245,11 @@ body {
     opacity: 0;
     visibility: hidden;
     border-radius: 5px;
+}
+
+.last-card:hover {
+    transform: scale(110%);
+    transition: .3s all;
 }
 
 .last-card-visible {
